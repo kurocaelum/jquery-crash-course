@@ -14,12 +14,103 @@
     </header>
 
     <div id="container">
+        <button id="btnFadeOut">Fade Out</button>
+        <button id="btnFadeIn">Fade In</button>
+        <button id="btnFadeTog">Fade Toggle</button>
+        <hr>
         
+        <button id="btnSlideUp">Slide Up</button>
+        <button id="btnSlideDown">Slide Down</button>
+        <button id="btnSlideTog">Slide Toggle</button>
+        <button id="btnStop">Stop</button>
+        <hr>
+
+        <div id="box">
+            <h1>Hello World</h1>
+        </div>
+        <hr>
+
+        <button id="moveLeft">Move Left</button>
+        <button id="moveRight">Move Right</button>
+        <button id="moveAround">Move Around</button>
+
+        <div id="box2"></div>
     </div>
 
     <!-- jQuery code here -->
     <script>
-        
+        $(document).ready(()=>{
+            /* Fade effects */
+            $('#btnFadeOut').click(()=>{
+                $('#box').fadeOut(1000);
+            });
+            
+            $('#btnFadeIn').click(()=>{
+                $('#box').fadeIn(1000);
+            });
+            
+            $('#btnFadeTog').click(()=>{
+                $('#box').fadeToggle(1000);
+            });
+
+            /* Slide effects */
+            $('#btnSlideUp').click(()=>{
+                $('#box').slideUp(1000);
+            });
+            
+            $('#btnSlideDown').click(()=>{
+                $('#box').slideDown(1000);
+            });
+            
+            $('#btnSlideTog').click(()=>{
+                $('#box').slideToggle(1000);
+            });
+
+            $('#btnStop').click(()=>{
+                $('#box').stop();
+            });
+
+            /* Animation */
+            $('#moveRight').click(()=>{
+                $('#box2').animate({
+                    left: 500,
+                    height: '300px',
+                    width: '300px',
+                    opacity: '0.5'
+                });
+            });
+            
+            $('#moveLeft').click(()=>{
+                $('#box2').animate({
+                    left: 0,
+                    height: '100px',
+                    width: '100px',
+                    opacity: '1'
+                });
+            });
+
+            $('#moveAround').click(()=>{
+                var box = $('#box2');
+                box.animate({
+                    left: 300
+                });
+                
+                box.animate({
+                    top: 300
+                });
+
+                box.animate({
+                    top: 300,
+                    left: 0
+                });
+
+                box.animate({
+                    left: 0,
+                    top: 0
+                });
+
+            });
+        });
     </script>
 </body>
 </html>
