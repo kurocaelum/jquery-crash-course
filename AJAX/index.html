@@ -10,16 +10,76 @@
 
 <body>
     <header>
-        <h1>jQuery Crash Course</h1>
+        <h1>jQuery Crash Course | AJAX</h1>
     </header>
 
     <div id="container">
-        
+        <div id="result"></div>
+
+        <ul id="users"></ul>
+
+        <h3>Add Post</h3>
+        <form id="postForm" action="https://jsonplaceholder.typicode.com/posts">
+            <input type="text" id="title" placeholder="Title"><br>
+            <textarea id="body" placeholder="Body"></textarea><br>
+            <input type="submit" value="Submit">
+        </form>
     </div>
 
     <!-- jQuery code here -->
     <script>
-        
+        /*
+        $(document).ready(()=>{
+            $('#result').load('test.html', (responseTxt, statusTxt, xhr)=>{
+                if(statusTxt == 'success') {
+                    alert('Tudo Celso');
+                } else if(statusTxt == 'error') {
+                    alert('Erro: ' + xhr.statusText);
+                }
+            });
+        });
+        */
+
+        /*
+        $.get('test.html', (data)=>{
+            $('#result').html(data);
+        });
+        */
+
+        /*
+        $.getJSON('users.json', (data)=>{
+            $.each(data, (i, user)=>{
+                $('ul#users').append('<li>'+ user.firstName + '</li>');
+            });
+        });
+        */
+
+        /*
+        $.ajax({
+            method: 'GET',
+            url: 'https://jsonplaceholder.typicode.com/posts',
+            dataType: 'json'
+        }).done((data)=>{
+            console.log(data);
+            $.map(data, (post, i)=>{
+                $('#result').append('<h3>'+post.title+'</h3><p>'+post.body+'</p>');
+            });
+        });
+        */
+
+        $('#postForm').submit(function(e){
+            e.preventDefault();
+
+            var title = $('#title').val();
+            var body = $('#body').val();
+            var url = $(this).attr('action');
+
+            $.post(url, {title:title, body:body})
+                .done((data)=>{
+                    console.log('Post saved');
+                    console.log(data);
+                });
+        });
     </script>
 </body>
 </html>
